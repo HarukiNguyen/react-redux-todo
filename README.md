@@ -5,3 +5,4 @@
 - [ ] New todo is at the top.
 - [ ] Optimal handleSubmitEdit() in TodoItem.js
 - [ ] Add persistance features.
+- [ ] Improve editing key bindding feature.
