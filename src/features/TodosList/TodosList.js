@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
-import { selectAllTodos } from "./todosSlice";
+import { selectFilteredTodos } from "./todosSlice";
 import TodoItem from "./TodoItem";
 
 function TodosList() {
-  const todos = useSelector(selectAllTodos);
+  const todos = useSelector(selectFilteredTodos);
   const todosList = Object.values(todos).map((todo) => {
     const { id, completed, text } = todo;
     return <TodoItem key={id} id={id} completed={completed} text={text} />;
