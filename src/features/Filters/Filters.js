@@ -13,11 +13,8 @@ function Filters() {
   const statusFilter = Object.entries(status).map(([key, val]) => {
     const filterItemClassName = val === filterStatus ? "selected" : "";
     return (
-      // href={`/${val}`}
       <li key={key} onClick={() => handleFilter(val)}>
-        <a className={filterItemClassName} href="/#">
-          {key}
-        </a>
+        <button className={filterItemClassName}>{key}</button>
       </li>
     );
   });
