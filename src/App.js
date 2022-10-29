@@ -16,7 +16,7 @@ function App() {
         {todoLength > 0 && <Footer />}
       </section>
       <footer className="info">
-        <p>Triple-click to edit a todo</p>
+        <p>Double-click to edit a todo</p>
         <p>
           Created by{" "}
           <a href="http://todomvc.com">
