@@ -54,10 +54,8 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-}
-
-.todo-list li .toggle {
   opacity: 0;
+  cursor: pointer;
 }
 
 .todo-list li .toggle + label {
@@ -101,6 +99,7 @@
   font-size: 30px;
   color: #949494;
   transition: color 0.2s ease-out;
+  cursor: pointer;
 }
 
 .todo-list li .destroy:hover,
