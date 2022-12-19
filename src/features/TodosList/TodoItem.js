@@ -1,17 +1,16 @@
-import { useRef, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { toggleTodo } from "./todosSlice";
-import { useState } from "react";
-import { saveEditedTodo, removeTodo } from "./todosSlice";
+import { useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import handleEdit from './handleFunction/handleEdit';
+import handleToggle from './handleFunction/handleToggle';
+import TodoItemInput from './TodoItemInput';
+import { removeTodo, saveEditedTodo, toggleTodo } from './todosSlice';
 
 function TodoItem({ id, completed, text }) {
   const editInput = useRef(null);
   const [isEditing, setIsEditing] = useState(false);
   const [editVal, setEditVal] = useState(text);
+
   const dispatch = useDispatch();
-  function handleToggle(id) {
-    dispatch(toggleTodo(id));
-  }
 
   useEffect(() => {
     if (isEditing) {
@@ -19,75 +18,45 @@ function TodoItem({ id, completed, text }) {
     }
   }, [isEditing]);
 
-  function handleEdit() {
-    setIsEditing(true);
-  }
-
-  function handleEditChange(e) {
-    setEditVal(e.target.value);
-  }
-
   function handleDispatchEditVal(id, editVal) {
     setIsEditing(false);
     dispatch(saveEditedTodo({ id: id, text: editVal }));
   }
 
-  function handleSubmitEdit(e) {
-    if (e.type === "keydown") {
-      if (editVal) {
-        if (e.key === "Enter") {
-          handleDispatchEditVal(id, editVal);
-        } else if (e.key === "Escape") {
-          setIsEditing(false);
-          setEditVal(text);
-        }
-      } else {
-        if (e.key === "Enter") {
-          dispatch(removeTodo(id));
-        } else if (e.key === "Escape") {
-          setEditVal(text);
-          setIsEditing(false);
-        }
-      }
-    } else if (e.type === "blur") {
-      if (editVal) {
-        handleDispatchEditVal(id, editVal);
-      } else {
-        setIsEditing(false);
-      }
-    }
-  }
+  const todoItemInputProps = {
+    editInput,
+    setEditVal,
+    editVal,
+    handleDispatchEditVal,
+    id,
+    setIsEditing,
+    text,
+    dispatch,
+    removeTodo,
+  };
 
   return (
     <li
-      className={`${completed ? "completed" : ""} ${
-        isEditing ? "editing" : ""
+      className={`${completed ? 'completed' : ''} ${
+        isEditing ? 'editing' : ''
       }`}
     >
-      <div className="view">
+      <div className='view'>
         <input
-          className="toggle"
-          type="checkbox"
+          className='toggle'
+          type='checkbox'
           checked={completed}
-          onChange={() => handleToggle(id)}
+          onChange={() => handleToggle(id, dispatch, toggleTodo)}
         />
-        <label onDoubleClick={handleEdit}>{text}</label>
+        <label onDoubleClick={() => handleEdit(setIsEditing)}>{text}</label>
         <button
-          className="destroy"
+          className='destroy'
           onClick={() => {
             dispatch(removeTodo(id));
           }}
         ></button>
       </div>
-      <input
-        ref={editInput}
-        className="edit"
-        onChange={handleEditChange}
-        onBlur={handleSubmitEdit}
-        onKeyDown={handleSubmitEdit}
-        value={editVal}
-        type="text"
-      />
+      <TodoItemInput todoItemInputProps={todoItemInputProps} />
     </li>
   );
 }
