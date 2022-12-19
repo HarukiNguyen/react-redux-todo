@@ -18,3 +18,8 @@ button {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+:focus {
+  box-shadow: 0 0 2px 2px #cf7d7d;
+  outline: 0;
+}
