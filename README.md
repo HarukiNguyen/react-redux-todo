@@ -7,6 +7,7 @@
 - [x] Change link of author.
 - [x] Change toggle all's icon.
 - [x] Add hover effect: toggle all btn, toggle completed btn, delete todo btn, filter btn.
+- [ ] Deploy lastest commit.
 
 - [ ] New todo is at the top.
 - [ ] Optimal handleSubmitEdit() in TodoItem.js
