@@ -19,7 +19,7 @@ function App() {
         <p>Double-click to edit a todo</p>
         <p>
           Created by{' '}
-          <a href='https://www.linkedin.com/in/haruki-nguyen-799b0a255/'>
+          <a href='https://www.linkedin.com/in/duy-nguyen-799b0a255/'>
             <b>Haruki Nguyen</b>
           </a>
         </p>
